@@ -1,5 +1,7 @@
 # fsdb
 
+[![Continuous Integration](https://github.com/complex64/fsdb/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/complex64/fsdb/actions/workflows/ci.yml)
+
 A very simple database backed by the file system.
 
 ## Usage
