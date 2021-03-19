@@ -1,6 +1,6 @@
 # fsdb
 
-A very simple database backed by the filesystem.
+A very simple database backed by the file system.
 
 ## Usage
 
