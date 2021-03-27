@@ -75,7 +75,10 @@ func TestDB(t *testing.T) {
 
 func TestKey(t *testing.T) {
 	db := fsdb.New("/tmp")
+
+	assert.Equal(t, "/tmp", db.Key("one").Prefix())
+
 	key := db.Key("foo", "bar")
-	assert.Equal(t, "/tmp/foo/bar", key.Prefix())
+	assert.Equal(t, "/tmp/foo", key.Prefix())
 	assert.Equal(t, "/tmp/foo/bar"+fsdb.Extension, key.Document())
 }

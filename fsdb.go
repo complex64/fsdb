@@ -263,7 +263,7 @@ func (db *DB) readAsync(routines int, paths <-chan string, entries chan<- encode
 
 func (db *DB) parseKey(s string) Key {
 	return Key{
-		prefix: strings.TrimSuffix(s, Extension),
+		prefix: path.Dir(s),
 		doc:    s,
 	}
 }
@@ -273,8 +273,8 @@ func (db *DB) Key(head string, tail ...string) Key {
 	k = append(k, db.dataDir)
 	k = append(k, head)
 	k = append(k, tail...)
-	prefix := path.Join(k...)
-	doc := prefix + Extension
+	doc := path.Join(k...) + Extension
+	prefix := path.Dir(doc)
 	return Key{
 		prefix: prefix,
 		doc:    doc,
@@ -286,8 +286,8 @@ type Key struct {
 	doc    string
 }
 
-func (k *Key) Prefix() string   { return k.prefix }
-func (k *Key) Document() string { return k.doc }
+func (k Key) Prefix() string   { return k.prefix }
+func (k Key) Document() string { return k.doc }
 
 type encoded struct {
 	path  string
