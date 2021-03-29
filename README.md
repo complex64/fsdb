@@ -17,11 +17,11 @@ type Document struct{ Field string }
 
 func main() {
 	doc := Document{Field: "value"}
-	
+
 	db := fsdb.New("mydatadir")
-	if err := db.Write(doc, "my", "key"); err != nil {
+	if err := db.Write(db.Key("my", "key"), doc); err != nil {
 		panic(err)
 	}
-	// db.Read, db.Delete, ...
+	// db.Read, db.ReadAll, db.Delete, ...
 }
 ```
